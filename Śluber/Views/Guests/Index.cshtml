@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Śluber.Models.Guest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista gości</h1>
+
+<div class="row">
+    <div class="col-3">
+        <a asp-action="Create">Create New</a>
+    </div>
+    <div class="col-3">
+        <div>Zaproszonych: @Model.Count(model => model.Id > 0)</div>
+    </div>
+    <div class="col-3">
+        <div>Potwierdzonych: @Model.Count(model => model.Status == true)</div>
+    </div>
+    <div class="col-3">
+        <div>Nocleg: @Model.Count(model => model.Accomodation == true)</div>
+    </div>
+
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Accomodation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Accomodation)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
