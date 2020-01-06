@@ -1,0 +1,39 @@
+﻿@model Śluber.Models.Room
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="ChangeNrOfTables">
+    <input type="number" name="TablesCount" value="4" min="4" max="10" required>
+    <input type="submit" value="Zmień ilość stołów">
+    </form>
+
+
+
+
+
+
+<div>
+    @foreach(var table in Model.Tables)
+    {
+    <div style="height: 5em; border: 2px solid black;">
+
+        @foreach (var chair in table.Chairs)
+        {
+        <form asp-action="AssignGuestToChair">
+            <input type="hidden" asp-for="ChairId" value="@chair.Id">
+            <input type="hidden" asp-for="TableId" value="@table.Id">
+            @Html.DropDownListFor(x => x.SelectedGuestId, new SelectList(Model.AvailableGuest, nameof(Guest.Id), nameof(Guest.Name)), "Wybierz gościa")
+            <input type="submit" value="Zatwierdź">
+        </form>
+        }
+    </div>
+    }
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

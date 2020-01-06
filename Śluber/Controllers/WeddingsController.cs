@@ -31,7 +31,8 @@ namespace Śluber
                 .FirstOrDefaultAsync(m => m.Id == 1);
             if (wedding == null)
             {
-                return NotFound();
+                wedding = new Wedding();
+                return View(wedding);
             }
 
             return View(wedding);

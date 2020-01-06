@@ -10,7 +10,7 @@
 
     <main role="main">
 
-        <div class="container marketing">
+        <div class="container text-center">
 
 
             
@@ -18,7 +18,7 @@
 
                 <div class="col-lg-5">
                     <img class="float-right; rounded-circle" src="~/pictures/no_person.png" alt="Generic placeholder image" width="140" height="140">
-                    <h2>@Html.LabelFor(m => m.WifeName, "Imię")</h2>
+                    <h2>@Html.DisplayFor(m => m.WifeName, "Imię")</h2>
                 </div>
 
                 <div class="col-lg-2">
@@ -27,14 +27,14 @@
 
                 <div class="col-lg-5">
                     <img class="rounded-circle" src="~/pictures/no_person.png" alt="Generic placeholder image" width="140" height="140">
-                    <h2>@Html.LabelFor(m => m.HusbandName, "Imię")</h2>
+                    <h2>@Html.DisplayFor(m => m.HusbandName, "Imię")</h2>
                 </div>
             </div>
 
             <div class="row featurette">
                 <div class="col-md-12">
-                    <h3>Data: @Html.LabelFor(m => m.WeddingDate)</h3>
-                    <h4>Miejsce: @Html.LabelFor(m => m.WeddingPlace)</h4>
+                    <h3>Data: @Html.DisplayFor(m => m.WeddingDate)</h3>
+                    <h4>Miejsce: @Html.DisplayFor(m => m.WeddingPlace)</h4>
                     <h5>Do naszego ślubu pozostało:</h5>
                 </div>
             </div>
