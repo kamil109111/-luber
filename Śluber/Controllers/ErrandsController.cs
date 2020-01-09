@@ -54,7 +54,7 @@ namespace Śluber.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,ErrandDate,ErrandStatus,ErrandPrice")] Errand errand)
+        public async Task<IActionResult> Create([Bind("Id,Name,ErrandDate,ErrandStatus,ErrandPrice,Note")] Errand errand)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Śluber.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ErrandDate,ErrandStatus,ErrandPrice")] Errand errand)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ErrandDate,ErrandStatus,ErrandPrice,Note")] Errand errand)
         {
             if (id != errand.Id)
             {

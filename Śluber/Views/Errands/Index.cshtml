@@ -6,9 +6,17 @@
 
 <h1>Lista zadań</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div style="height:50px" class="row">
+    <div style="" class="col-4">
+        <a asp-action="Create">Dodaj zadanie</a>
+    </div>
+    <div class="col-4">
+        <div>Liczba zadań: @Model.Count(model => model.Id > 0)</div>
+    </div>
+    <div class="col-4">
+        <div>Wykonano: @Model.Count(model => model.ErrandStatus == true)</div>
+    </div> 
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -24,30 +32,66 @@
             <th>
                 @Html.DisplayNameFor(model => model.ErrandPrice)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ErrandDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ErrandStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ErrandPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            @if (item.ErrandStatus == true)
+            {
+                <tr style="background-color:#d4edda">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandPrice)
+                    </td>
+                    <td class="text-wrap">
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td class="text-nowrap">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ErrandPrice)
+                    </td>
+                    <td class="text-wrap">
+                        @Html.DisplayFor(modelItem => item.Note)
+                    </td>
+                    <td class="text-nowrap">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        }
     </tbody>
 </table>
