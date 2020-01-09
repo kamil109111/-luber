@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Śluber.Data;
 
 namespace Śluber.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200109225107_ZmanaIntnaFloatwErrandPrice")]
+    partial class ZmanaIntnaFloatwErrandPrice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -229,8 +231,8 @@ namespace Śluber.Data.Migrations
                     b.Property<DateTime?>("ErrandDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ErrandPrice")
-                        .HasColumnType("decimal(18, 2)");
+                    b.Property<float>("ErrandPrice")
+                        .HasColumnType("real");
 
                     b.Property<bool>("ErrandStatus")
                         .HasColumnType("bit");

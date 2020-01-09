@@ -7,15 +7,18 @@
 <h1>Lista zadań</h1>
 
 <div style="height:50px" class="row">
-    <div style="" class="col-4">
+    <div style="" class="col-3">
         <a asp-action="Create">Dodaj zadanie</a>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <div>Liczba zadań: @Model.Count(model => model.Id > 0)</div>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <div>Wykonano: @Model.Count(model => model.ErrandStatus == true)</div>
-    </div> 
+    </div>
+    <div class="col-3">
+        <div>Całkowita kwota: @Model.Sum(model => model.ErrandPrice) zł </div>
+    </div>
 </div>
 <table class="table">
     <thead>
@@ -39,8 +42,10 @@
         </tr>
     </thead>
     <tbody>
+
         @foreach (var item in Model)
-        {
+        {          
+            
             @if (item.ErrandStatus == true)
             {
                 <tr style="background-color:#d4edda">
