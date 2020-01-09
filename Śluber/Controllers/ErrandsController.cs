@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Śluber.Data;
 using Śluber.Models;
@@ -20,9 +21,31 @@ namespace Śluber.Controllers
         }
 
         // GET: Errands
-        public async Task<IActionResult> Index()
+       // public async Task<IActionResult> Index()
+       // {
+       //     return View(await _context.Errand.ToListAsync());
+      //  }
+
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            return View(await _context.Errand.ToListAsync());
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+                               var errands = from e in _context.Errand
+                               select e;
+                switch (sortOrder)
+                {
+                    
+                    case "Date":
+                       errands = errands.OrderBy(e => e.ErrandDate);
+                        break;
+                    case "date_desc":
+                        errands = errands.OrderByDescending(e => e.ErrandDate);
+                        break;
+                    default:
+                        errands = errands.OrderBy(e => e.ErrandDate);
+                        break;
+                }
+            return View(await errands.AsNoTracking().ToListAsync());
+            
         }
 
         // GET: Errands/Details/5

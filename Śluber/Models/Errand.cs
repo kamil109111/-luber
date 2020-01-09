@@ -28,5 +28,6 @@ namespace Śluber.Models
         [Display(Name = "Notatka")]
         [StringLength(40)]
         public string Note { get; set; }
+
     }
 }
