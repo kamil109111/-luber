@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Śluber.Models
 {
-    public class Wedding
+    public class Wedding : AuditEntity, IHaveAOwner
     {
         public int Id { get; set; }
 
@@ -16,6 +16,10 @@ namespace Śluber.Models
         public DateTime WeddingDate { get; set; }
 
         public string WeddingPlace { get; set; }
+
+        public string OwnerId { get; set; }
+
+        public ApplicationUser Owner { get; set; }
                
         //public List<Errand> Errands { get; set; }
 

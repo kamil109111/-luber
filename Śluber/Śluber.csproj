@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200109165606_WypełnienieListyZadań.cs" />
     <Compile Remove="Data\Migrations\20200109165606_WypełnienieListyZadań.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200122140242_owner.cs" />
+    <Compile Remove="Data\Migrations\20200122140242_owner.Designer.cs" />
   </ItemGroup>
 
 

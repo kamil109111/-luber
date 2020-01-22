@@ -10,6 +10,7 @@ using Śluber.Models;
 
 namespace Śluber.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Śluber.Models;
 
 namespace Śluber
 {
+    [Authorize]
     public class WeddingsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,21 +22,11 @@ namespace Śluber
         }
 
         // GET: Weddings
-        public async Task<IActionResult> Index(int? id=1 )
+        public IActionResult Index()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var wedding = await _context.Wedding
-                .FirstOrDefaultAsync(m => m.Id == 1);
-            if (wedding == null)
-            {
-                return NotFound();
-            }
 
-            return View(wedding);
+            return View();
         }
 
         // GET: Weddings/Details/5
