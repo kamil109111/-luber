@@ -6,7 +6,7 @@ using Śluber.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Śluber.Models;
 
 namespace Śluber
 {
@@ -25,7 +25,7 @@ namespace Śluber
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -52,7 +52,8 @@ namespace Śluber
 
 
 
-
+            services.AddSession();
+            services.AddMvc();
 
         }
 
@@ -78,11 +79,13 @@ namespace Śluber
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Weddings}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

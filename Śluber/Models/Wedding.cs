@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,5 +31,11 @@ namespace Śluber.Models
         public int Budget { get; set; }
 
         public int Cost { get; set; }
+
+        [NotMapped]
+        public string Name
+        {
+            get { return WifeName + " & " + HusbandName; }
+        }
     }
 }

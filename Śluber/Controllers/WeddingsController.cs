@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,15 @@ namespace Śluber
     [Authorize]
     public class WeddingsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext _context;
+        public UserManager<ApplicationUser> UserManager => _userManager;
 
-        public WeddingsController(ApplicationDbContext context)
+        public WeddingsController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context)
         {
+            _userManager = userManager;
             _context = context;
         }
 
@@ -25,8 +31,11 @@ namespace Śluber
         public IActionResult Index()
         {
 
-
+  
             return View();
+        
+
+       
         }
 
         // GET: Weddings/Details/5
@@ -58,11 +67,22 @@ namespace Śluber
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,WifeName,HusbandName,WeddingDate,WeddingPlace")] Wedding wedding)
+        public async Task<IActionResult> Create( Wedding wedding)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(wedding);
+                var userId = _userManager.GetUserId(User);
+                Wedding review = new Wedding
+                {
+                    WifeName = wedding.WifeName,
+                    HusbandName = wedding.HusbandName,
+                    WeddingDate = wedding.WeddingDate,
+                    WeddingPlace = wedding.WeddingPlace,
+                    OwnerId = userId,
+                    CreatedById = userId,
+                    ModifiedById = userId
+                };
+                _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
