@@ -28,14 +28,16 @@ namespace Śluber
         }
 
         // GET: Weddings
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+          
 
-  
-            return View();
-        
+            var userId = _userManager.GetUserId(User);
+            var wedding = await _context.Wedding
+                .FirstOrDefaultAsync(m => m.OwnerId == userId);
+          
 
-       
+            return View(wedding);
         }
 
         // GET: Weddings/Details/5
