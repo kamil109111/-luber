@@ -33,11 +33,14 @@ namespace Śluber
           
 
             var userId = _userManager.GetUserId(User);
-            var wedding = await _context.Wedding
-                .FirstOrDefaultAsync(m => m.OwnerId == userId);
+            List<Wedding> weddings = new List<Wedding>();
+               weddings = await _context.Wedding
+                .Where(m => m.OwnerId == userId)
+                .ToListAsync();
+           // Wedding wedding = weddings.FirstOrDefault(m => m.OwnerId == userId);
           
 
-            return View(wedding);
+            return View("Index", weddings);
         }
 
         // GET: Weddings/Details/5
