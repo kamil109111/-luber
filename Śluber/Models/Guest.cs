@@ -22,5 +22,9 @@ namespace Śluber.Models
 
         [Display(Name = "Nocleg")]
         public bool Accomodation { get; set; }
+
+        public string OwnerId { get; set; }
+
+        public ApplicationUser Owner { get; set; }
     }
 }

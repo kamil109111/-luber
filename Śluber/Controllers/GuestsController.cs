@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,17 +15,30 @@ namespace Śluber
     [Authorize]
     public class GuestsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private ApplicationDbContext _context;
+        public UserManager<ApplicationUser> UserManager => _userManager;
 
-        public GuestsController(ApplicationDbContext context)
+        public GuestsController(
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context)
         {
+            _userManager = userManager;
             _context = context;
         }
 
         // GET: Guests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Guest.ToListAsync());
+            var userId = _userManager.GetUserId(User);
+            List<Guest> guests = new List<Guest>();
+            guests = await _context.Guest
+             .Where(m => m.OwnerId == userId)
+             .ToListAsync();
+            
+
+
+            return View("Index", guests);
         }
 
         // GET: Guests/Details/5
@@ -56,16 +70,29 @@ namespace Śluber
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Status,Accomodation")] Guest guest)
+        public async Task<IActionResult> Create(Guest guest)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(guest);
+                var userId = _userManager.GetUserId(User);
+                Guest review = new Guest
+                {
+                    Name = guest.Name,
+                    Status = guest.Status,
+                    Accomodation = guest.Accomodation,
+                    OwnerId = userId,
+                    Owner = guest.Owner
+
+                };
+
+                _context.Add(review);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(guest);
         }
+
+     
 
         // GET: Guests/Edit/5
         public async Task<IActionResult> Edit(int? id)
