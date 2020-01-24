@@ -41,6 +41,19 @@ namespace Śluber
             return View("Index", guests);
         }
 
+        public async Task<IActionResult> TablesView()
+        {
+            var userId = _userManager.GetUserId(User);
+            List<Guest> guests = new List<Guest>();
+            guests = await _context.Guest
+             .Where(m => m.OwnerId == userId)
+             .ToListAsync();
+
+
+
+            return View("TablesView", guests);
+        }
+
         // GET: Guests/Details/5
         public async Task<IActionResult> Details(int? id)
         {

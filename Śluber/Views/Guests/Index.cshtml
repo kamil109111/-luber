@@ -8,7 +8,7 @@
 
 <div style="height:50px" class="row">
     <div class="col-3">
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Dodaj nowego gościa</a>
     </div>
     <div class="col-3">
         <div>Zaproszonych: @Model.Count(model => model.Id > 0)</div>
@@ -50,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Accomodation)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
             </td>
         </tr>
 }

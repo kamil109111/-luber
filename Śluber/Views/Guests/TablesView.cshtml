@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Śluber.Models.Guest>
+
+    <head>
+        <style>
+            #content {
+                width: 100%;
+                min-height: 100%;
+
+                
+            }
+
+            #div1 {               
+                
+                float:left;
+                
+                width:80px;
+                min-height:30px;
+                margin: 1px;
+                padding: 1px;
+                border: 1px solid black;
+            }
+            #div2 {
+                float: left;
+                min-width: 80px;
+                min-height: 30px;
+                margin: 1px;
+                padding: 1px;
+                border: 1px solid black;
+            }
+            #div3 {
+                float: left;
+                min-width: 50px;
+                min-height: 20px;
+                border: 1px solid black;
+            }
+            #div4 {
+                float: right;
+                min-width: 80px;
+                min-height: 30px;
+                margin: 1px;
+                padding: 1px;
+                border: 1px solid black;
+            }
+        </style>
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+    </head>
+
+    <h1>Układ stołów</h1>
+    <div class="row" id="content">
+        <div class="col-2">
+            <div class="table">
+                <div class="border-right">
+                    <div>
+                        <div>
+                            Lista potwierdzonych gości:
+                        </div>
+                    </div>
+                </div>
+                <div class="border-right">
+                    @foreach (var item in Model)
+                    {
+                        <div>
+                            @if (item.Status == true)
+                            {
+                                <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                                    <div class="text-sm-left" draggable="true" ondragstart="drag(event)" id="@item.Id">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2" id="content" style="background-color:aliceblue">
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+        <div class="col-6" style="background-color:aliceblue; justify-items:center ">
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            
+        </div>
+        <div class="col-2" id="content" style="background-color:aliceblue">
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            
+
+        </div>
+</div>
