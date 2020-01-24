@@ -30,11 +30,11 @@
             }
         </style>
 
-        <p id="odliczanie"></p>
+        
 
         <script>
             // Set the date we're counting down to
-            var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+           var countDownDate = new Date("@item.WeddingDate.ToString("r")").getTime();
 
             // Update the count down every 1 second
             var x = setInterval(function () {
@@ -91,7 +91,9 @@
                     <div class="col-md-12">
                         <h3>Data: @Html.DisplayFor(modelItem => item.WeddingDate)</h3>
                         <h4>Miejsce: @Html.DisplayFor(modelItem => item.WeddingPlace)</h4>
-                        <h5>Do naszego ślubu pozostało:</h5>
+                        <h5>Do naszego ślubu pozostało: </h5>
+                        <p id="odliczanie"></p>
+
                     </div>
                 </div>
             </div>
