@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Tables\**" />
+    <Content Remove="Views\Tables\**" />
+    <EmbeddedResource Remove="Views\Tables\**" />
+    <None Remove="Views\Tables\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\Migrations\20200109165606_WypełnienieListyZadań.cs" />
     <Compile Remove="Data\Migrations\20200109165606_WypełnienieListyZadań.Designer.cs" />
     <Compile Remove="Data\Migrations\20200122140242_owner.cs" />
@@ -26,11 +33,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Views\Tables\" />
   </ItemGroup>
 
 </Project>
