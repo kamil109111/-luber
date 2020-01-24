@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body style="background-color:antiquewhite">
-    <header style="background-color: burlywood">
+<body style="background-image: url('../pictures/tło.jpg'); background-repeat: no-repeat; background-size: cover">
+    <header style="background-color: ghostwhite">
        @Html.Partial("_NavBar")
     </header>
-    <div class="container" style="background-color:antiquewhite;" >
-        <main role="main" class="pb-3" style="height:100%; width:100% ">
+    <div class="container" >
+        <div style="background-color:ghostwhite; background: rgba(248, 248, 255, 0.70) ">
+        <main role="main" class="pb-3" style="height:100%; width:100%; ">
             @RenderBody()
         </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted" style="background-color: burlywood">
+    <footer class="border-top footer text-muted" style="background-color: ghostwhite">
         <div class="container">
             &copy; 2019 - Śluber - <a asp-area="" asp-controller="Home" asp-action="Privacy">Prywatność</a>
         </div>
