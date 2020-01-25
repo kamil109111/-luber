@@ -115,7 +115,7 @@ namespace Śluber
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,WifeName,HusbandName,WeddingDate,WeddingPlace,Budget,Cost")] Wedding wedding)
+        public async Task<IActionResult> Edit(int id, Wedding wedding)
         {
             if (id != wedding.Id)
             {
